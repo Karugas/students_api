@@ -16,7 +16,31 @@ class ApiClient:
         self.base_url = "http://194.87.126.16"
         self.session = requests.Session()
 
+    # Получить список всех студентов
     def get_all_students(self):
         url = f"{self.base_url}/student"
         response = self.session.get(url)
+        return response
+
+    # Создает нового студента при наличии корректного JSON.
+    def create_new_student(self, payload: dict):
+        url = f"{self.base_url}/student"
+        response = self.session.post(url, json=payload)
+        return response
+
+    # Удаляет студента по ID.
+    def delete_students(self, student_id: int):
+        url = f"{self.base_url}/student/{student_id }"
+        response = self.session.delete(url)
+        return response
+
+    # Возвращает данные конкретного студента.
+    def get_student_data(self, student_id: int):
+        url = f"{self.base_url}/student/{student_id }"
+        response = self.session.get(url)
+        return response
+
+    def update_student(self, student_id: int, payload: dict):
+        url = f"{self.base_url}/student/{student_id}"
+        response = self.session.put(url, json=payload)
         return response

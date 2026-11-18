@@ -30,16 +30,17 @@ class ApiClient:
 
     # Удаляет студента по ID.
     def delete_students(self, student_id: int):
-        url = f"{self.base_url}/student/{student_id }"
+        url = f"{self.base_url}/student/{student_id}"
         response = self.session.delete(url)
         return response
 
     # Возвращает данные конкретного студента.
     def get_student_data(self, student_id: int):
-        url = f"{self.base_url}/student/{student_id }"
+        url = f"{self.base_url}/student/{student_id}"
         response = self.session.get(url)
         return response
 
+    # Обновляет имя, email, gender и status конкретного студента.
     def update_student(self, student_id: int, payload: dict):
         url = f"{self.base_url}/student/{student_id}"
         response = self.session.put(url, json=payload)

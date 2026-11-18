@@ -1,3 +1,5 @@
+import allure
+import logging
 import requests
 from pydantic import BaseModel
 
@@ -16,32 +18,37 @@ class ApiClient:
         self.base_url = "http://194.87.126.16"
         self.session = requests.Session()
 
-    # Получить список всех студентов
+    @allure.step("Получаем список всех студентов")
     def get_all_students(self):
         url = f"{self.base_url}/student"
         response = self.session.get(url)
+        logging.info(response.text)
         return response
 
-    # Создает нового студента при наличии корректного JSON.
+    @allure.step("Создаём нового студента")
     def create_new_student(self, payload: dict):
         url = f"{self.base_url}/student"
         response = self.session.post(url, json=payload)
+        logging.info(response.text)
         return response
 
-    # Удаляет студента по ID.
+    @allure.step("Удаляем студента c ID")
     def delete_students(self, student_id: int):
         url = f"{self.base_url}/student/{student_id}"
         response = self.session.delete(url)
+        logging.info(response.text)
         return response
 
-    # Возвращает данные конкретного студента.
+    @allure.step("Получаем данные студента")
     def get_student_data(self, student_id: int):
         url = f"{self.base_url}/student/{student_id}"
         response = self.session.get(url)
+        logging.info(response.text)
         return response
 
-    # Обновляет имя, email, gender и status конкретного студента.
+    @allure.step("Обновляем данные студента")
     def update_student(self, student_id: int, payload: dict):
         url = f"{self.base_url}/student/{student_id}"
         response = self.session.put(url, json=payload)
+        logging.info(response.text)
         return response

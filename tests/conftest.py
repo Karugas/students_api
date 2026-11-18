@@ -1,3 +1,4 @@
+import allure
 import pytest
 from students_api.src.api.api_client import ApiClient
 from students_api.src.data.student_data import random_student_data
@@ -8,6 +9,12 @@ def client():
     # Создаём чистый клиент для сессии
     client = ApiClient()
     yield client
+
+
+@pytest.fixture(autouse=True)
+def add_logs(caplog):
+    yield
+    allure.attach(caplog.text, name="logs", attachment_type=allure.attachment_type.TEXT)
 
 
 @pytest.fixture()

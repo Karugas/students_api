@@ -1,1 +1,1 @@
-# students_api
+# Автотесты для API students_api

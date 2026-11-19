@@ -13,6 +13,28 @@ class StudentSchema(BaseModel):
     status: int
 
 
+UPDATE_STUDENT_SCHEMA = {
+    "type": "object",
+    "required": ["message", "status", "student"],
+    "properties": {
+        "message": {"type": "string"},
+        "status": {"type": "integer"},
+        "student": {
+            "type": "object",
+            "required": ["email", "gender", "id", "name", "phone_no", "status"],
+            "properties": {
+                "email": {"type": "string"},
+                "gender": {"type": "string"},
+                "id": {"type": "integer"},
+                "name": {"type": "string"},
+                "phone_no": {"type": "string"},
+                "status": {"type": "integer"}
+            }
+        }
+    }
+}
+
+
 class ApiClient:
     def __init__(self):
         self.base_url = "http://194.87.126.16"

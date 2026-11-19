@@ -24,7 +24,7 @@ def test_get_all_students(client, create_student):
 @allure.title("Создаём нового студента")
 def test_create_new_student(client):
     response = client.create_new_student(random_student_data())
-    assert response.status_code == 200, f"Ожидали 200, получили {response.status_code}"
+    assert response.status_code == 201, f"Ожидали 201 Created, получили {response.status_code}"
     data = response.json()
     StudentSchema(**data["student"])
     student_id = data["student"]["id"]

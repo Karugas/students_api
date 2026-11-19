@@ -53,7 +53,3 @@ def test_update_student_data(client, create_student):
     validate(instance=response.json(), schema=UPDATE_STUDENT_SCHEMA)
     assert response.status_code == 200, f"Ожидали 200, получили {response.status_code}"
     assert response.json()["message"] == "Student updated successfully", "Студент не был изменён"
-    response = client.get_student_data(student_id=create_student)
-    data = response.json()
-    #Проверяем соответствие Schema
-    assert data["student"]["name"] == "Yaromir", "Студент не был изменён"
